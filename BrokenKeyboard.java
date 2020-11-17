@@ -19,24 +19,24 @@ import java.util.Scanner;
  */
 public class BrokenKeyboard {
     public static void main(String[] args) {
-        HashSet<Character> set = new HashSet<>();
-        ArrayList<Character> result = new ArrayList<>();
+        HashSet<Character> set = new HashSet<>();  //存实际输入，也就是好的键
+        ArrayList<Character> result = new ArrayList<>();  //坏键列表
         Scanner sc = new Scanner(System.in);
         String want1 = sc.nextLine();
         String cur1 = sc.nextLine();
-        char [] want = want1.toUpperCase().toCharArray();
-        char [] cur = cur1.toUpperCase().toCharArray();
+        char [] want = want1.toUpperCase().toCharArray(); //存期望输入数组
+        char [] cur = cur1.toUpperCase().toCharArray();  
         for(int k = 0;k < cur.length;k++){
-            set.add(cur[k]);
+            set.add(cur[k]);  
         }
         int j = 0;
-        while (j < want.length){
-            if(set.contains(want[j])){
+        while (j < want.length){   // 遍历期望输出数组
+            if(set.contains(want[j])){	  //如果是好的键，跳过
                 j++;
             }
-            else if(result.contains(want[j])) {
+            else if(result.contains(want[j])) {  //如果坏键保存过，跳过
                 j++;
-            }else {
+            }else {     // 否则加入坏键列表
                 result.add(want[j]);
                 j++;
             }
