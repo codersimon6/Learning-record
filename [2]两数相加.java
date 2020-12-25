@@ -23,23 +23,29 @@
  *     ListNode(int x) { val = x; }
  * }
  */
-class Solution {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-                ListNode result = new ListNode(0);
-                ListNode cur = result;
-                int i = 0;
-                while(l1 != null || l2 != null){
-                    int sum = (l1==null?0:l1.val) + (l2==null?0:l2.val) + i;
-                    i = sum>9?1:0;
-                    sum = sum%10;
-                    cur.next = new ListNode(sum);
-                    cur = cur.next;
-                    if(l1 != null)l1 = l1.next;
-                    if(l2 != null)l2 = l2.next;
-                }
-                if(i == 1)cur.next = new ListNode(i);
-                return result.next;
-
+public class Solution {
+    public ListNode addTwoNumbers (ListNode f1, ListNode f2) {
+        ListNode newhead = new ListNode(0);
+        ListNode cur = newhead;
+        int res = 0;
+        
+        while(f1 != null || f2 != null){
+            int a = f1==null?0:f1.val;
+            int b = f2==null?0:f2.val;
+            int sum = a + b + res;
+            
+            if(sum > 9){
+                res = 1;
+                sum = sum-10;
+            }
+            cur.next = new ListNode(sum);
+            cur = cur.next;
+            if(f1 != null)f1 = f1.next;
+            if(f2 != null)f2 = f2.next;
+        }
+        
+        if(res == 1)cur.next = new ListNode(res);
+        return newhead.next;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
