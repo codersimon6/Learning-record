@@ -24,31 +24,35 @@
 // 👍 659 👎 0
 
 
-//leetcode submit region begin(Prohibit modification and deletion)
+import java.util.*;
 
-import java.util.LinkedList;
-
-/**
- * Definition for a binary tree node.
+/*
  * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
+ *   int val = 0;
+ *   TreeNode left = null;
+ *   TreeNode right = null;
  * }
  */
-class Solution {
-    List<List<Integer>> list = new LinkedList<>();
-    public void help(TreeNode root,int lev){
-        if(lev == list.size())list.add(new LinkedList<>());
-        list.get(lev).add(root.val);
-        if(root.left != null)help(root.left,lev+1);
-        if(root.right != null)help(root.right,lev+1);
-    }
-    public List<List<Integer>> levelOrder(TreeNode root) {
+
+public class Solution {
+    /**
+     * 
+     * @param root TreeNode类 
+     * @return int整型ArrayList<ArrayList<>>
+     */
+    ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+    public ArrayList<ArrayList<Integer>> levelOrder (TreeNode root) {
+        // write code here
         if(root == null)return list;
-        help(root,0);
+        bfs(0,root);
         return list;
     }
+    public void bfs(int count,TreeNode node){
+        if(count == list.size()){
+            list.add(new ArrayList<Integer>());
+        }
+        list.get(count).add(node.val);
+        if(node.left != null) bfs(count+1,node.left);
+        if(node.right != null) bfs(count+1,node.right);
+    }
 }
-//leetcode submit region end(Prohibit modification and deletion)
